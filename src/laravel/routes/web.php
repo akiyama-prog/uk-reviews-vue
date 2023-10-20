@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RestaurantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,11 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('ln.top');
+    return redirect()->route('ln.rs-index');
 });
-Route::prefix('london')->name('ln.')->group(function () {
+Route::group(['prefix' => 'london', 'as' => 'ln.'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('top');
+    Route::group(['prefix' => 'restaurants', 'as' => 'rs-'], function (){
+        Route::get('/', [RestaurantController::class, 'index'])->name('index');
+    });
 });
