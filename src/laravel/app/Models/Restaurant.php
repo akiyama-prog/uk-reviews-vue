@@ -16,4 +16,12 @@ class Restaurant extends Model
     {
         return $this->belongsTo(Genre::class);
     }
+    
+    /**
+     * レストランの口コミを取得
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Restaurant::class);
+    }
 }
