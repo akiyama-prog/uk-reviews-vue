@@ -15,6 +15,7 @@ class Review extends Model
     public function resutaurant(): BelongsTo
     {
         return $this->belongsTo(Restaurant::class);
+    }
     
     /**
      * この口コミの投稿者情報を取得（ログインしている人のみ）

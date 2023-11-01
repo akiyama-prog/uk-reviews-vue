@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,7 +14,8 @@ class RestaurantController extends Controller
      */
     public function index(): View
     {
-        return view('restaurant.index');
+        $review = Review::with('resutaurant')->get();
+        return view('restaurant.index', compact('review'));
     }
 
     /**
@@ -21,7 +23,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('restaurant.create');
     }
 
     /**
